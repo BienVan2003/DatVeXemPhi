@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 22, 2023 at 07:13 PM
+-- Generation Time: May 26, 2023 at 01:08 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -33,24 +33,31 @@ CREATE TABLE `bookingdetails` (
   `issueDate` varchar(50) DEFAULT NULL,
   `status` varchar(50) DEFAULT NULL,
   `seats_booked` varchar(100) NOT NULL,
-  `schedule_id` int(11) NOT NULL
+  `schedule_id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `bookingdetails`
 --
 
-INSERT INTO `bookingdetails` (`bookingDetail_id`, `amount`, `issueDate`, `status`, `seats_booked`, `schedule_id`) VALUES
-(1, 21, '2023-06-05 11:56:19', 'Reserved', 'A1,A2,A3', 18),
-(2, 14, '2023-06-07 09:00:00', 'Paid', 'B2,B3', 18),
-(3, 7, '2023-06-05 05:14:38', 'Paid', 'B1', 18),
-(4, 21, '2023-06-05 10:10:10', 'Paid', 'B1,B2,B3', 19),
-(5, 14, '2023-06-05 03:15:23', 'Paid', 'A2,A3', 19),
-(15, 21, '2023-06-05 03:35:38', 'Paid', 'A1,A2,A3', 253),
-(16, 21, '2023-06-05 03:36:35', 'Paid', 'A10,A8,A9', 385),
-(17, 14, '2023-05-20 05:36:05', 'Reserved', 'A4,A5', 18),
-(18, 7, '2023-05-20 05:53:00', 'Reserved', 'A3', 466),
-(19, 14, '2023-05-20 05:53:21', 'Reserved', 'A1,A2', 466);
+INSERT INTO `bookingdetails` (`bookingDetail_id`, `amount`, `issueDate`, `status`, `seats_booked`, `schedule_id`, `user_id`) VALUES
+(1, 21, '2023-06-05 11:56:19', 'Reserved', 'A1,A2,A3', 18, NULL),
+(2, 14, '2023-06-07 09:00:00', 'Paid', 'B2,B3', 18, NULL),
+(3, 7, '2023-06-05 05:14:38', 'Paid', 'B1', 18, NULL),
+(4, 21, '2023-06-05 10:10:10', 'Paid', 'B1,B2,B3', 19, NULL),
+(5, 14, '2023-06-05 03:15:23', 'Paid', 'A2,A3', 19, NULL),
+(15, 21, '2023-06-05 03:35:38', 'Paid', 'A1,A2,A3', 253, NULL),
+(16, 21, '2023-06-05 03:36:35', 'Paid', 'A10,A8,A9', 385, NULL),
+(17, 14, '2023-05-20 05:36:05', 'Reserved', 'A4,A5', 18, NULL),
+(18, 7, '2023-05-20 05:53:00', 'Reserved', 'A3', 466, NULL),
+(19, 14, '2023-05-20 05:53:21', 'Reserved', 'A1,A2', 466, NULL),
+(20, 7, '2023-05-26 12:42:57', 'Reserved', 'A1', 21, 1),
+(21, 14, '2023-05-26 01:00:00', 'Reserved', 'A2,A3', 21, 1),
+(22, 7, '2023-05-26 01:00:47', 'Reserved', 'A4', 21, 1),
+(23, 7, '2023-05-26 01:02:20', 'Reserved', 'A5', 21, 1),
+(24, 7, '2023-05-26 01:05:38', 'Reserved', 'A1', 462, 1),
+(25, 7, '2023-05-26 01:06:51', 'Reserved', 'A2', 462, 1);
 
 -- --------------------------------------------------------
 
@@ -183,12 +190,12 @@ CREATE TABLE `movies` (
   `movie_id` int(10) UNSIGNED NOT NULL,
   `cate_id` int(10) DEFAULT NULL,
   `title` text NOT NULL,
-  `durations` varchar(50) NOT NULL,
-  `image` varchar(254) NOT NULL,
+  `durations` text NOT NULL,
+  `image` text NOT NULL,
   `rating` text DEFAULT NULL,
   `des` text NOT NULL,
-  `release_date` varchar(50) DEFAULT NULL,
-  `url_trailer` varchar(500) NOT NULL
+  `release_date` date DEFAULT NULL,
+  `url_trailer` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
@@ -196,22 +203,22 @@ CREATE TABLE `movies` (
 --
 
 INSERT INTO `movies` (`movie_id`, `cate_id`, `title`, `durations`, `image`, `rating`, `des`, `release_date`, `url_trailer`) VALUES
-(1, 1, 'Doctor Strange in the Multiverse of Madness', '2h 54 Minutes', 'Doctor Strange.jpg', '9.2', 'Doctor Strange teams up with a mysterious teenage girl from his dreams who can travel across multiverses, to battle multiple threats, including other-universe versions of himself, which threaten to wipe out millions across the multiverse.', '12-12-2020', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/aWzlQ2N6qqg\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
-(10, 1, 'Jumanji: Welcome to the Jungle', '1h 35 minutes', 'jumanji_v8_aa.jpg', '8', 'When four students play with a magical video game, they are drawn to the jungle world of Jumanji, where they are trapped as their avatars. To return to the real world, they must finish the game.', '12-24-2020', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/2QKg5SZ_35I\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
-(14, 2, 'Black Panther: Wakanda Forever', '2h 39 minutes', 'BlackPanther.jpg', '7.8', 'Queen Ramonda, Shuri, M\'Baku, Okoye and the Dora Milaje fight to protect their nation from intervening world powers in the wake of King T\'Challa\'s death. As the Wakandans strive to embrace their next chapter, the heroes must band together with Nakia and Everett Ross to forge a new path for their beloved kingdom.', '02-14-2024', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/RlOB3UALvrQ\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
-(15, 1, 'Free Guy', '1h 40 minutes', 'freeguy.jpg', '7.1', 'When Guy, a bank teller, learns that he is a non-player character in a bloodthirsty, open-world video game, he goes on to become the hero of the story and takes the responsibility of saving the world.', '02-18-2023', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/X2m-08cOAbc\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
-(16, 3, 'Extraction', '1h 56 minutes', 'Extraction.jpg', '6.1', 'A black-market mercenary who has nothing to lose is hired to rescue the kidnapped son of an imprisoned international crime lord. But in the murky underworld of weapons dealers and drug traffickers, an already deadly mission approaches the impossible.', '02-28-2023', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/L6P3nI6VnlY\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
-(17, 2, 'Puss in Boots: The Last Wish', '1h 40 minutes', 'puss-in-boots.jpg', '7.9', 'Puss in Boots discovers that his passion for adventure has taken its toll when he learns that he has burnt through eight of his nine lives. Puss sets out on an epic journey to find the mythical Last Wish and restore his nine lives.', '12-22-2022', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/RqrXhwS33yc\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
-(18, 3, 'Dune', '2h 35 minutes', 'dune.jpg', '8', 'Paul Atreides arrives on Arrakis after his father accepts the stewardship of the dangerous planet. However, chaos ensues after a betrayal as forces clash to control melange, a precious resource.', '12-22-2024', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/n9xhJrPXop4\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
-(19, 1, 'Black Adam', '2h 40 minutes', 'Black_Adam.jpg', '6.4', 'After being bestowed with godly powers and imprisoned for it, Black Adam is liberated from his earthly binds to unleash his fury on the modern world.', '12-22-2024', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/mkomfZHG5q4\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
-(22, 3, 'Spider-Man: No Way Home', '2h 28 minutes', 'nwhspider.jpg', '9.5', 'Spider-Man seeks the help of Doctor Strange to forget his exposed secret identity as Peter Parker. However, Stranges spell goes horribly wrong, leading to unwanted guests entering their universe.', '02-22-2023', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/JfVOs4VSpmA\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
-(24, 1, 'Ant-Man and the Wasp: Quantumania', ' 2h 5 minutes', 'antman.jpg', '9', 'Ant-Man and the Wasp find themselves exploring the Quantum Realm, interacting with strange new creatures and embarking on an adventure that pushes them beyond the limits of what they thought was possible.', '2023', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/ZlNFpri-Y40\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
-(25, 2, 'Shazam! Fury of the Gods', ' 2h 10 minutes', 'shazam-fury-of-the-gods-final-button-1674672663658.jpg', '7', 'Bestowed with the powers of the gods, Billy Batson and his fellow foster kids are still learning how to juggle teenage life with their adult superhero alter egos. When a vengeful trio of ancient gods arrive on Earth in search of the magic stolen from them long ago, Shazam and his allies get thrust into a battle for their superpowers, their lives, and the fate of the world.', 'March 17, 2023 ', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/AIc671o9yCI\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
-(26, 1, 'John Wick: Chapter 4', ' 2h 49 minutes', 'johnwick.jpg', '8', 'With the price on his head ever increasing, legendary hit man John Wick takes his fight against the High Table global as he seeks out the most powerful players in the underworld, from New York to Paris to Japan to Berlin.', '2023', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/yjRHZEUamCc\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
-(27, 1, 'Guardians of the Galaxy Vol. 3', ' 2h 35 minutes', 'guardians_3.jpg', '8', 'The Guardians of the Galaxy are adjusting to life on Knowhere, but when parts of Rocket\'s past resurface, Peter Quill must lead the Guardians on a dangerous mission to protect him that could lead to the team dissolving.', '2023', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/JqcncLPi9zw\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
-(29, 2, 'The Flash', ' 2h 49 minutes', 'TheFlash.png', '9', ' travel back in time to change the events of the past. However, when his attempt to save his family inadvertently alters the future, he becomes trapped in a reality in which General Zod has returned, threatening annihilation. With no other superheroes to turn to, the Flash looks to coax a very different Batman out of retirement and rescue an imprisoned Kryptonian -- albeit not the one he\'s looking for.', 'June 16, 2023', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/hebWYacbdvc\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
-(30, 1, 'The Marvels', ' 2h 10 minutes', 'TheMarvels.jpg', '8', 'The Marvels is an upcoming American superhero film based on Marvel Comics featuring the characters Carol Danvers / Captain Marvel, Kamala Khan / Ms. Marvel, and Monica Rambeau.', '2023', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/Wh1h73V8Pc4\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
-(31, 1, 'Aquaman and the Lost Kingdom', ' 2h 15 minutes', 'aquaman-2-scaled.jpg', '8', 'Aquaman forges an uneasy alliance with an unlikely ally in a bid to save Atlantis and the rest of the planet.', '2023 ', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/zL2BtTdIuLI\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>');
+(1, 1, 'Phù Thủy Tối Thượng Trong Đa Vũ Trụ Hỗn Loạn', '2h 54 Minutes', 'Doctor Strange.jpg', '9.2', 'Doctor Strange teams up with a mysterious teenage girl from his dreams who can travel across multiverses, to battle multiple threats, including other-universe versions of himself, which threaten to wipe out millions across the multiverse.', '2023-05-26', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/aWzlQ2N6qqg\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
+(10, 1, 'Jumanji: Trò Chơi Kỳ Ảo', '1h 35 minutes', 'jumanji_v8_aa.jpg', '8', 'When four students play with a magical video game, they are drawn to the jungle world of Jumanji, where they are trapped as their avatars. To return to the real world, they must finish the game.', '2023-05-26', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/2QKg5SZ_35I\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
+(14, 2, 'Chiến Binh Báo Đen: Wakanda Bất Diệt', '2h 39 minutes', 'BlackPanther.jpg', '7.8', 'Queen Ramonda, Shuri, M\'Baku, Okoye and the Dora Milaje fight to protect their nation from intervening world powers in the wake of King T\'Challa\'s death. As the Wakandans strive to embrace their next chapter, the heroes must band together with Nakia and Everett Ross to forge a new path for their beloved kingdom.', '2023-05-26', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/RlOB3UALvrQ\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
+(15, 1, 'Giải Cứu Guy', '1h 40 minutes', 'freeguy.jpg', '7.1', 'When Guy, a bank teller, learns that he is a non-player character in a bloodthirsty, open-world video game, he goes on to become the hero of the story and takes the responsibility of saving the world.', '2023-05-26', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/X2m-08cOAbc\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
+(16, 3, 'Extraction', '1h 56 minutes', 'Extraction.jpg', '6.1', 'A black-market mercenary who has nothing to lose is hired to rescue the kidnapped son of an imprisoned international crime lord. But in the murky underworld of weapons dealers and drug traffickers, an already deadly mission approaches the impossible.', '2023-05-26', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/L6P3nI6VnlY\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
+(17, 2, 'Mèo Đi Hia Điều Ước Cuối Cùng', '1h 40 minutes', 'puss-in-boots.jpg', '7.9', 'Puss in Boots discovers that his passion for adventure has taken its toll when he learns that he has burnt through eight of his nine lives. Puss sets out on an epic journey to find the mythical Last Wish and restore his nine lives.', '2023-05-26', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/RqrXhwS33yc\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
+(18, 3, 'Dune', '2h 35 minutes', 'dune.jpg', '8', 'Paul Atreides arrives on Arrakis after his father accepts the stewardship of the dangerous planet. However, chaos ensues after a betrayal as forces clash to control melange, a precious resource.', '2023-05-26', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/n9xhJrPXop4\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
+(19, 1, 'Black Adam', '2h 40 minutes', 'Black_Adam.jpg', '6.4', 'After being bestowed with godly powers and imprisoned for it, Black Adam is liberated from his earthly binds to unleash his fury on the modern world.', '2023-05-26', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/mkomfZHG5q4\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
+(22, 3, 'Spider-Man: No Way Home', '2h 28 minutes', 'nwhspider.jpg', '9.5', 'Spider-Man seeks the help of Doctor Strange to forget his exposed secret identity as Peter Parker. However, Stranges spell goes horribly wrong, leading to unwanted guests entering their universe.', '2023-05-26', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/JfVOs4VSpmA\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
+(24, 1, 'Người Kiến Và Chiến Binh Ong: Thế Giới Lượng Tử', ' 2h 5 minutes', 'antman.jpg', '9', 'Ant-Man and the Wasp find themselves exploring the Quantum Realm, interacting with strange new creatures and embarking on an adventure that pushes them beyond the limits of what they thought was possible.', '2023-05-26', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/ZlNFpri-Y40\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
+(25, 2, 'Shazam! Cơn Thịnh Nộ Của Các Vị Thần', ' 2h 10 minutes', 'shazam-fury-of-the-gods-final-button-1674672663658.jpg', '7', 'Bestowed with the powers of the gods, Billy Batson and his fellow foster kids are still learning how to juggle teenage life with their adult superhero alter egos. When a vengeful trio of ancient gods arrive on Earth in search of the magic stolen from them long ago, Shazam and his allies get thrust into a battle for their superpowers, their lives, and the fate of the world.', '2023-05-26', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/AIc671o9yCI\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
+(26, 1, 'John Wick: Chapter 4', ' 2h 49 minutes', 'johnwick.jpg', '8', 'With the price on his head ever increasing, legendary hit man John Wick takes his fight against the High Table global as he seeks out the most powerful players in the underworld, from New York to Paris to Japan to Berlin.', '2023-05-26', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/yjRHZEUamCc\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
+(27, 1, 'Vệ Binh Dải Ngân Hà 3', ' 2h 35 minutes', 'guardians_3.jpg', '8', 'The Guardians of the Galaxy are adjusting to life on Knowhere, but when parts of Rocket\'s past resurface, Peter Quill must lead the Guardians on a dangerous mission to protect him that could lead to the team dissolving.', '2023-05-26', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/JqcncLPi9zw\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
+(29, 2, 'The Flash', ' 2h 49 minutes', 'TheFlash.png', '9', ' travel back in time to change the events of the past. However, when his attempt to save his family inadvertently alters the future, he becomes trapped in a reality in which General Zod has returned, threatening annihilation. With no other superheroes to turn to, the Flash looks to coax a very different Batman out of retirement and rescue an imprisoned Kryptonian -- albeit not the one he\'s looking for.', '2023-05-26', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/hebWYacbdvc\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
+(30, 1, 'The Marvels', ' 2h 10 minutes', 'TheMarvels.jpg', '8', 'The Marvels is an upcoming American superhero film based on Marvel Comics featuring the characters Carol Danvers / Captain Marvel, Kamala Khan / Ms. Marvel, and Monica Rambeau.', '2023-05-26', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/Wh1h73V8Pc4\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>'),
+(31, 1, 'Aquaman 2 Và Vương Quốc Đã Mất', ' 2h 15 minutes', 'aquaman-2-scaled.jpg', '8', 'Aquaman forges an uneasy alliance with an unlikely ally in a bid to save Atlantis and the rest of the planet.', '2023-05-26', '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/zL2BtTdIuLI\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" allowfullscreen></iframe>');
 
 -- --------------------------------------------------------
 
@@ -930,6 +937,30 @@ INSERT INTO `seats` (`seat_id`, `type_seat`, `seat_number`, `rows_number`) VALUE
 (3, '', 12, 7),
 (4, '', 12, 9);
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `email` text NOT NULL,
+  `pass` text NOT NULL,
+  `fullName` text NOT NULL,
+  `role` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `email`, `pass`, `fullName`, `role`) VALUES
+(-1, 'ngoisao2310@gmail.com', '202cb962ac59075b964b07152d234b70', 'Nguyen Xuan Bien', 0),
+(1, 'admin@gmail.com', '202cb962ac59075b964b07152d234b70', 'Nguyễn Văn Biên', NULL),
+(2, 'ngoisa34o2310@gmail.com', '202cb962ac59075b964b07152d234b70', 'Nguyen Xuan Bien', 0),
+(3, 'nvb221003@gmail.com', '202cb962ac59075b964b07152d234b70', 'Nguyen Xuan Bien', 0);
+
 --
 -- Indexes for dumped tables
 --
@@ -993,6 +1024,13 @@ ALTER TABLE `seats`
   ADD KEY `gf` (`seat_number`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`) USING HASH;
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -1000,7 +1038,7 @@ ALTER TABLE `seats`
 -- AUTO_INCREMENT for table `bookingdetails`
 --
 ALTER TABLE `bookingdetails`
-  MODIFY `bookingDetail_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `bookingDetail_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `branches`
@@ -1049,6 +1087,12 @@ ALTER TABLE `schedules`
 --
 ALTER TABLE `seats`
   MODIFY `seat_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

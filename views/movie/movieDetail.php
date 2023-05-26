@@ -1,13 +1,5 @@
 <div id="main">
-  <div id="nav">
-    <ul>
-      <li><a href="#">Movie</a></li>
-      <li><a href="#">Cinemas</a></li>
-      <li><a href="#">Promotion</a></li>
-      <li><a href="#">News & Activities</a></li>
-      <li><a href="#">Contact us</a></li>
-    </ul>
-  </div>
+
   <div id="description">
     <div class="content">
       <div style="box-sizing: content-box;" id="movie-image">

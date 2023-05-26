@@ -1,6 +1,6 @@
 <?php
     $supported_controllers = array(
-        'user' => array('index', 'MovieDetail', 'SelectShowtime', 'Payment', 'save', 'delete'),
+        'user' => array('index', 'login', 'register', 'logout', 'MovieDetail', 'SelectShowtime', 'Payment', 'save', 'delete'),
         'movie' => array('index', 'view', 'edit', 'save', 'delete'),
         'pages' => array('error')
     );

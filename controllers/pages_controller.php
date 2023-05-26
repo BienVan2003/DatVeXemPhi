@@ -12,5 +12,6 @@
             //Biến content trong template.php
             require_once('views/layout/template.php');
         }
+
     }
 ?>

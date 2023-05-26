@@ -24,46 +24,52 @@
                     </li>
                 </ul>
                 <ul class="movies-list">
-                <?php foreach ($data["movies"] as $row){ ?>
-                            <!-- Bumble bee starts here -->
-                            <li>
-                                <div class="movie-card">
-                                    <a href="?controller=user&action=MovieDetail&movie_id=<?= $row->movie_id ?>">
-                                        <figure class="card-banner">
-                                            <img src="assets/images/<?= $row->image ?>">
-                                        </figure>
+                    <?php foreach ($data["movies"] as $row) { ?>
+                        <!-- Bumble bee starts here -->
+                        <li>
+                            <div class="movie-card">
+                                <a href="?controller=user&action=MovieDetail&movie_id=<?= $row->movie_id ?>">
+                                    <figure class="card-banner">
+                                        <img src="assets/images/<?= $row->image ?>">
+                                    </figure>
+                                </a>
+
+                                <div class="title-wrapper">
+                                    <a href="">
+                                        <h3 class="card-title"><?= $row->title ?></h3>
                                     </a>
 
-                                    <div class="title-wrapper">
-                                        <a href="">
-                                            <h3 class="card-title"><?= $row->title ?></h3>
-                                        </a>
+                                    <time>
+                                        <?php
+                                        $release_date = $row->release_date;
+                                        $formatted_date = date('Y', strtotime($release_date));
+                                        echo $formatted_date;
+                                        ?>
+                                    </time>
 
-                                        <time datetime="2023"><?php $release_date = $row->release_date;
-                                                                echo date('Y', strtotime($release_date))  ?></time>
+                                </div>
+
+                                <div class="card-meta">
+                                    <div class="badge badge-outline">Up to IMAX</div>
+
+                                    <div class="duration">
+                                        <ion-icon name="time-outline"></ion-icon>
+
+                                        <time datetime="PT122M"><?= $row->durations ?></time>
                                     </div>
 
-                                    <div class="card-meta">
-                                        <div class="badge badge-outline">Up to IMAX</div>
-
-                                        <div class="duration">
-                                            <ion-icon name="time-outline"></ion-icon>
-
-                                            <time datetime="PT122M"><?= $row->durations ?></time>
-                                        </div>
-
-                                        <div class="rating">
-                                            <ion-icon name="star"></ion-icon>
-                                            <data><?php $rating = $row->rating;
-                                                    if ($rating == "") {
-                                                        echo "N/A";
-                                                    } else {
-                                                        echo $rating;
-                                                    } ?></data>
-                                        </div>
+                                    <div class="rating">
+                                        <ion-icon name="star"></ion-icon>
+                                        <data><?php $rating = $row->rating;
+                                                if ($rating == "") {
+                                                    echo "N/A";
+                                                } else {
+                                                    echo $rating;
+                                                } ?></data>
                                     </div>
                                 </div>
-                            </li>
+                            </div>
+                        </li>
                     <?php } ?>
                 </ul>
             </div>

@@ -27,7 +27,7 @@ class Movie{
         $sql = "insert into movies (`cate_id`,`title`,`durations`,`image`,`rating`,`des`,`release_date`,`url_trailer`) values (:cate_id,:title,:durations,:image,:rating,:des,:release_date,:url_trailer)";
         $stm = $conn->prepare($sql);
 
-        $stm->execute(array('cate_id'=>$movie->cate_id,'title'=>$movie->title,'durations'=>$movie->duration,'image'=>$movie->image,'rating'=>$movie->rating,'des'=>$movie->des,'release_date'=>$movie->release_date,'url_trailer'=>$movie->url_trailer));
+        $stm->execute(array('cate_id'=>$movie->cate_id,'title'=>$movie->title,'durations'=>$movie->durations,'image'=>$movie->image,'rating'=>$movie->rating,'des'=>$movie->des,'release_date'=>$movie->release_date,'url_trailer'=>$movie->url_trailer));
         
         return $stm->rowCount() == 1;
     }

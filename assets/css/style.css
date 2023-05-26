@@ -536,8 +536,8 @@ body.active { overflow: hidden; }
 \*-----------------------------------*/
 
 .upcoming {
-  margin-block-start: 200px;
-  background: url("../images/upcoming-bg.png") no-repeat;
+  margin-block-start: 100px;
+  background: url("assets/images/space.jpg") no-repeat;
   background-size: cover;
   background-position: center;
 }

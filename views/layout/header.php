@@ -1,7 +1,7 @@
 <header class="header" data-header>
     <div class="container">
       <div class="overlay" data-overlay></div>
-      <a href="" class="logo">
+      <a href="index.php" class="logo">
         <img style="height: 60px; width:92px" src="assets/images/galaxy-logo-mobile.png" alt="">
       </a>
       <div class="header-actions">
@@ -42,23 +42,31 @@
         <ul class="navbar-list">
 
           <li>
-            <a href="./home.php" class="navbar-link">Home</a>
+            <a href="index.php" class="navbar-link">Home</a>
           </li>
 
           <li>
-            <a href="#" class="navbar-link">Movie</a>
+            <a href="index.php" class="navbar-link">Movie</a>
           </li>
 
           <li>
-            <a href="#" class="navbar-link">Tv Show</a>
+            <?php               
+                if(isset($_SESSION['email'])){
+                echo '<a href="#" class="navbar-link">'.$_SESSION['fullName'] .'</a>';
+                }else{
+                  echo '<a href="?controller=user&action=login" class="navbar-link">Login</a>';
+                }
+             ?>
           </li>
 
           <li>
-            <a href="#" class="navbar-link">Web Series</a>
-          </li>
-
-          <li>
-            <a href="#" class="navbar-link">Pricing</a>
+          <?php               
+                if(isset($_SESSION['email'])){
+                echo '<a href="?controller=user&action=logout" class="navbar-link">Đăng xuất</a>';
+                }else{
+                  echo '<a href="?controller=user&action=register" class="navbar-link">Register</a>';
+                }
+             ?>
           </li>
 
         </ul>

@@ -1,13 +1,4 @@
 <div id="main">
-    <div id="nav">
-        <ul>
-            <li><a href="/movie-detail.html">Movie</a></li>
-            <li><a href="#">Cinemas</a></li>
-            <li><a href="#">Promotion</a></li>
-            <li><a href="#">News & Activities</a></li>
-            <li><a href="#">Contact us</a></li>
-        </ul>
-    </div>
     <div id="nav-seat">
         <ul>
             <li><a href="#">CHỌN SUẤT CHIẾU</a></li>
@@ -81,7 +72,7 @@
                                         $result_start_time = $connection->query($sql_st);
                                         if ($result_start_time->num_rows > 0) {
                                             while ($st = $result_start_time->fetch_assoc()) { ?>
-                                                <li><a id="<?= $count ?>" <?php $sdBooked = $st['schedule_id']; ?> value="<?=  $sdBooked ?>" href="?controller=user&action=Payment&scheduleID=<?= $sdBooked ?>">
+                                                <li><a id="<?= $count ?>" <?php $sdBooked = $st['schedule_id']; ?> value="<?=  $sdBooked ?>" href="?controller=user&action=Payment&schedule_id=<?= $sdBooked ?>">
                                                 <?php $time = $st['start_time'];
                                                                                                                                                                                                                                 $count += 1;
                                                                                                                                                                                                                                 echo date('h:i a', strtotime($time)); ?></a></li>

@@ -1,44 +1,31 @@
 <?php
-
-$sdBooked = $_REQUEST['scheduleID'];
-$branch = "";
-$hall = "";
-$title = "";
-if (isset($_REQUEST['reserve'])) {
-    $phone = $_REQUEST['phone_number'];
-    $first_name = $_REQUEST['first_name'];
-    $last_name = $_REQUEST['last_name'];
-    echo $first_name . $last_name . $phone;
-    $date_issue = date('Y-m-d h:i:s');
-    $subject = "SS11 CINEMA TICKET ";
-    $header = "earsongchay@gmail.com";
-    $to = $_COOKIE['email'];
-    $ticket = $_COOKIE['seat'];
-    $amount = str_replace('$', '', $_COOKIE['amount']);
-    $message = "Thank you very much. You've ordered ticket(s) for <b>" . $title . "</b> at " . $branch . ". \r\nTicket : $ticket\r\nHall : " . $hall . "";
-    $message .= "\r\nAnd please see the counter to check the bill.";
-    //mail($to, $subject, $message);
-    $sql = "INSERT INTO bookingdetails (bookingDetail_id, amount, issueDate, seats_booked, scheduleDetail_id,status) VALUES (NULL,$amount ,'$date_issue', '$ticket', $sdBooked,'Reserved');";
-
-    if (str_contains($to, '@') && $phone && $last_name && $first_name) {
-        mysqli_query($connection, $sql);
-        header("Location: /movies/Movies/pages/");
-        setcookie('email', null, -1);
-        setcookie('amount', null, -1);
-        setcookie('seat', null, -1);
-        exit();
-    } else {
-        header("Location: /movies/Movies/pages/seat.php?scheduleID=$sdBooked");
-        exit();
-    }
-}
-
 $conn = new mysqli(HOST, USER, PASS, DB);
 
 // Kiểm tra kết nối thành công hay không
 if ($conn->connect_error) {
     die("Kết nối cơ sở dữ liệu thất bại: " . $conn->connect_error);
 }
+
+$sdBooked = $_REQUEST['schedule_id'];
+$branch = "";
+$hall = "";
+$title = "";
+if (isset($_REQUEST['reserve']) && isset($_COOKIE['seat']) && isset($_COOKIE['amount']) ) {
+    $date_issue = date('Y-m-d h:i:s');
+    $ticket = $_COOKIE['seat'];
+    $amount = str_replace('$', '', $_COOKIE['amount']);
+    $message = "Thank you very much. You've ordered ticket(s) for <b>" . $title . "</b> at " . $branch . ". \r\nTicket : $ticket\r\nHall : " . $hall . "";
+    $message .= "\r\nAnd please see the counter to check the bill.";
+    $sql = "INSERT INTO bookingdetails (bookingDetail_id, amount, issueDate, status, seats_booked, schedule_id, user_id) VALUES (NULL,$amount ,'$date_issue', 'Reserved', '$ticket', $sdBooked, " . $_SESSION['id'] . ")";
+
+    mysqli_query($conn, $sql);
+    setcookie('email', null, -1);
+    setcookie('amount', null, -1);
+    setcookie('seat', null, -1);
+    echo '<script>alert("Cảm ơn bạn đã đặt vé xem phim của chúng tôi!\nChúc bạn có buổi xem phim vui vẻ!");</script>';
+}
+
+
 
 
 $sql = "SELECT h.seat_id ,rows_number, seat_number 
@@ -152,18 +139,17 @@ $result = $conn->query($sql);
         <div id="total">TỔNG TIỀN &nbsp: &nbsp <div id="total-price">...</div>
         </div>
         <div id="customer-info">
-            Thông Tin Khách Hàng
-            <form method="post">
-                <input type="text" class="name" name="first_name" placeholder="FIRST NAME">
+            <form method="">
+                <!-- <input type="text" class="name" name="first_name" placeholder="FIRST NAME">
                 <input type="text" class="name" name="last_name" placeholder="LAST NAME">
                 <input type="text" class="name" name="phone_number" placeholder="PHONE NUMBER">
-                <input type="text" class="name" id="email" name="email" placeholder="EMAIL">
+                <input type="text" class="name" id="email" name="email" placeholder="EMAIL"> -->
         </div>
         <div id="btn">
             <!-- <button id="reserve" name="reserve">Thanh toán</button> -->
             </form>
-            <form>
-                <button type="submit" id="checkout-button">PAY NOW</button>
+            <form method="post" action="">
+                <button name="reserve" type="submit" id="checkout-button">PAY NOW</button>
             </form>
 
         </div>

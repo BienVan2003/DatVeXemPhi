@@ -15,7 +15,7 @@
 </head>
 
 <body>
-  <div class="app">
+  <div style="padding-top: 100px;" class="app">
     <?php
     require_once "views/layout/header.php";
     ?>

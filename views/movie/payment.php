@@ -41,7 +41,7 @@ WHERE sd.schedule_id = $sdBooked";
 $result = $conn->query($sql);
 ?>
 
-<div id="nav">
+<!-- <div id="nav">
     <ul>
         <li><a href="index.php">Movie</a></li>
         <li><a href="index.php">Cinemas</a></li>
@@ -49,7 +49,7 @@ $result = $conn->query($sql);
         <li><a href="index.php">News & Activities</a></li>
         <li><a href="index.php">Contact us</a></li>
     </ul>
-</div>
+</div> -->
 <div id="nav-seat">
     <ul>
         <li><a href="#" id="first">CHỌN SUẤT</a></li>

@@ -10,7 +10,7 @@
         $action = 'error';
     }
 
-    require_once("controllers/" . $controller. "_controller.php");
+    require_once "controllers/" . $controller. "_controller.php";
     // Ham ucfirst viet hoa chu cai dau
     // Bien className dung de noi ten
     // className se la ten class can dung

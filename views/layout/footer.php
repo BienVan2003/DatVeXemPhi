@@ -1,3 +1,4 @@
+<div id="thongbao"></div>
 <footer class="footer">
 
   <div class="footer-top">

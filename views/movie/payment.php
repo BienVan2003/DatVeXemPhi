@@ -10,21 +10,25 @@ $sdBooked = $_REQUEST['schedule_id'];
 $branch = "";
 $hall = "";
 $title = "";
-if (isset($_REQUEST['reserve']) && isset($_COOKIE['seat']) && isset($_COOKIE['amount']) ) {
-    $date_issue = date('Y-m-d h:i:s');
-    $ticket = $_COOKIE['seat'];
-    $amount = str_replace('$', '', $_COOKIE['amount']);
-    $message = "Thank you very much. You've ordered ticket(s) for <b>" . $title . "</b> at " . $branch . ". \r\nTicket : $ticket\r\nHall : " . $hall . "";
-    $message .= "\r\nAnd please see the counter to check the bill.";
-    $sql = "INSERT INTO bookingdetails (bookingDetail_id, amount, issueDate, status, seats_booked, schedule_id, user_id) VALUES (NULL,$amount ,'$date_issue', 'Reserved', '$ticket', $sdBooked, " . $_SESSION['id'] . ")";
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_SESSION['email']) && isset($_REQUEST['reserve']) && isset($_COOKIE['seat']) && isset($_COOKIE['amount'])) {
+        $date_issue = date('Y-m-d h:i:s');
+        $ticket = $_COOKIE['seat'];
+        $amount = str_replace('$', '', $_COOKIE['amount']);
+        $message = "Thank you very much. You've ordered ticket(s) for <b>" . $title . "</b> at " . $branch . ". \r\nTicket : $ticket\r\nHall : " . $hall . "";
+        $message .= "\r\nAnd please see the counter to check the bill.";
+        $sql = "INSERT INTO bookingdetails (bookingDetail_id, amount, issueDate, status, seats_booked, schedule_id, user_id) VALUES (NULL,$amount ,'$date_issue', 'Reserved', '$ticket', $sdBooked, " . $_SESSION['id'] . ")";
 
-    mysqli_query($conn, $sql);
-    setcookie('email', null, -1);
-    setcookie('amount', null, -1);
-    setcookie('seat', null, -1);
-    echo '<script>alert("Cảm ơn bạn đã đặt vé xem phim của chúng tôi!\nChúc bạn có buổi xem phim vui vẻ!");</script>';
+        mysqli_query($conn, $sql);
+        setcookie('email', null, -1);
+        setcookie('amount', null, -1);
+        setcookie('seat', null, -1);
+        
+        echo '<script type="text/javascript">Swal.fire("Thành Công", "Cảm ơn bạn đã đặt vé xem phim của chúng tôi!\nChúc bạn có buổi xem phim vui vẻ!","success");</script>';
+    } else {
+        echo '<script type="text/javascript">Swal.fire("Thất Bại", "Vui lòng đăng nhập","error");</script>';
+    }
 }
-
 
 
 

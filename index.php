@@ -1,8 +1,8 @@
 <?php
-    session_start();
-
-     require_once('config.php');
-     require_once('function.php');
+session_start();
+// die($_SERVER['DOCUMENT_ROOT']. '/config.php');
+     require_once 'config.php';
+     require_once 'function.php';
 
      if(isset($_GET['controller'])){
          $controller = $_GET['controller'];
@@ -17,7 +17,7 @@
      }
 
      // định tuyến
-     require_once('route.php');
+     require_once  'route.php';
 
 //    require_once('models/Student.php');
 //    $list = Student::getAll();

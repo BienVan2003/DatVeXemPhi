@@ -47,11 +47,19 @@ class UserController
                 }
             }
         }
-        if (isset($_SESSION['email'])) {
-            header('Location: index.php');
-            exit();
-        }
+        // if (isset($_SESSION['email'])) {
+        //     header('Location: index.php');
+        //     exit();
+        // }
         require_once 'views/pages/login.php';
+        if (isset($_SESSION['email'])) {
+            echo '<script type="text/javascript">
+                Swal.fire("Thành Công", "Đăng nhập thành công", "success")
+                    .then(function() {
+                        location.href = "index.php";
+                    });
+            </script>';
+        }
     }
     public function logout()
     {
@@ -93,10 +101,10 @@ class UserController
                             $_SESSION['fullName'] = $user->fullName;
                             $_SESSION['role'] = $user->role;
 
-                            if (isset($_SESSION['email'])) {
-                                header('Location: index.php');
-                                exit();
-                            }
+                            // if (isset($_SESSION['email'])) {
+                            //     header('Location: index.php');
+                            //     exit();
+                            // }
                         }
                     }
                 }
@@ -104,6 +112,17 @@ class UserController
         }
 
         require_once 'views/pages/register.php';
+
+        if (isset($_SESSION['email'])) {
+            echo '<script type="text/javascript">
+            Swal.fire("Thành Công", "Tạo tài khoản nhập thành công", "success")
+              .then(function() {
+                setTimeout(function() {
+                  location.href = "index.php";
+                }, 3000);
+              });
+          </script>';
+        }
     }
     public function MovieDetail()
     {

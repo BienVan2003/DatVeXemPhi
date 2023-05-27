@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 26, 2023 at 01:08 PM
+-- Generation Time: May 27, 2023 at 05:34 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -57,7 +57,8 @@ INSERT INTO `bookingdetails` (`bookingDetail_id`, `amount`, `issueDate`, `status
 (22, 7, '2023-05-26 01:00:47', 'Reserved', 'A4', 21, 1),
 (23, 7, '2023-05-26 01:02:20', 'Reserved', 'A5', 21, 1),
 (24, 7, '2023-05-26 01:05:38', 'Reserved', 'A1', 462, 1),
-(25, 7, '2023-05-26 01:06:51', 'Reserved', 'A2', 462, 1);
+(25, 7, '2023-05-26 01:06:51', 'Reserved', 'A2', 462, 1),
+(26, 7, '2023-05-27 05:02:16', 'Reserved', 'A1', 345, 1);
 
 -- --------------------------------------------------------
 
@@ -959,7 +960,10 @@ INSERT INTO `users` (`id`, `email`, `pass`, `fullName`, `role`) VALUES
 (-1, 'ngoisao2310@gmail.com', '202cb962ac59075b964b07152d234b70', 'Nguyen Xuan Bien', 0),
 (1, 'admin@gmail.com', '202cb962ac59075b964b07152d234b70', 'Nguyễn Văn Biên', NULL),
 (2, 'ngoisa34o2310@gmail.com', '202cb962ac59075b964b07152d234b70', 'Nguyen Xuan Bien', 0),
-(3, 'nvb221003@gmail.com', '202cb962ac59075b964b07152d234b70', 'Nguyen Xuan Bien', 0);
+(3, 'nvb221003@gmail.com', '202cb962ac59075b964b07152d234b70', 'Nguyen Xuan Bien', 0),
+(4, 'bien@gmail.com', '202cb962ac59075b964b07152d234b70', 'Ngọc Anh', 0),
+(5, 'bien@bien.com', '202cb962ac59075b964b07152d234b70', 'bien', 0),
+(6, 'bienn@gmail.com', '202cb962ac59075b964b07152d234b70', 'bien', 0);
 
 --
 -- Indexes for dumped tables
@@ -1038,7 +1042,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `bookingdetails`
 --
 ALTER TABLE `bookingdetails`
-  MODIFY `bookingDetail_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `bookingDetail_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `branches`
@@ -1092,7 +1096,7 @@ ALTER TABLE `seats`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

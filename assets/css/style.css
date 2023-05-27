@@ -106,6 +106,7 @@ html {
 
 body {
    background: var(--eerie-black); 
+   font-family: "Times New Roman", Times, serif !important;
   }
 
 body.active { overflow: hidden; }
@@ -1187,4 +1188,25 @@ body.active { overflow: hidden; }
    */
 
   .upcoming .movies-list > li { min-width: calc(25% - 22.5px); }
+}
+
+.notification {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  padding: 20px;
+  background-color: #f44336;
+  color: white;
+  text-align: center;
+}
+
+.closebtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
 }

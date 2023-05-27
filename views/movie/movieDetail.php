@@ -12,6 +12,8 @@
         <div id="movie-description"> <?= $movie->des ?></div>
         <div id="btnShowtime">
           <a style="display: inline" href="?controller=user&action=SelectShowtime&movie_id=<?= $movie_id ?>">Đặt vé</a>
+          <!-- <a id="Submit" style="display: inline" href="">Đặt vé</a> -->
+          <!-- <button type="button" id="Submit" class="btn btn-primary">Đặt vé</button> -->
         </div>
       </div>
       <div id="movie-screen-types">

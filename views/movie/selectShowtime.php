@@ -6,7 +6,7 @@
             <li><a href="#">RESERVE | BUY</a></li>
         </ul>
     </div>
-    <div id="select-showtime-details">
+    <div id="select-showtime-details" >
         <?php
         $connection = new mysqli(HOST, USER, PASS, DB);
 
@@ -72,10 +72,10 @@
                                         $result_start_time = $connection->query($sql_st);
                                         if ($result_start_time->num_rows > 0) {
                                             while ($st = $result_start_time->fetch_assoc()) { ?>
-                                                <li><a id="<?= $count ?>" <?php $sdBooked = $st['schedule_id']; ?> value="<?=  $sdBooked ?>" href="?controller=user&action=Payment&schedule_id=<?= $sdBooked ?>">
-                                                <?php $time = $st['start_time'];
-                                                                                                                                                                                                                                $count += 1;
-                                                                                                                                                                                                                                echo date('h:i a', strtotime($time)); ?></a></li>
+                                                <li><a id="<?= $count ?>" <?php $sdBooked = $st['schedule_id']; ?> value="<?= $sdBooked ?>" href="?controller=user&action=Payment&schedule_id=<?= $sdBooked ?>">
+                                                        <?php $time = $st['start_time'];
+                                                        $count += 1;
+                                                        echo date('h:i a', strtotime($time)); ?></a></li>
                                         <?php
                                             }
                                         }   ?>
